@@ -30,13 +30,14 @@ void WABIStateMachine( bopeventtype_t newevent, uint16_t param1, uint32_t param2
         
         //WELCOMING
         case WELCOMING:
-            printfUSART3("State:Welcoming");
+            
             //if BUTTON_PRESS event
             if (newevent == BUTTON_PRESS)
             {
+                printfUSART3("State:Action \n");
                 clearGPIOB15();
                 setGPIOB13();
-                insertBopEventToQueue(STARTTIMEOUT, ACTION_TIMER, (uint32_t)5000);
+                insertBopEventToQueue(STARTTIMEOUT, ACTION_TIMER, 5000);
                 bopstate = ACTION_STATE;
                 //Will become COUNTDOWN
             }
@@ -47,10 +48,11 @@ void WABIStateMachine( bopeventtype_t newevent, uint16_t param1, uint32_t param2
             //else 
             else
             {
+                printfUSART3("State:Error \n");
                 clearGPIOB15();
                 clearGPIOB13();
                 setGPIOB12();
-                insertBopEventToQueue(STARTTIMEOUT, ERROR_TIMER, (uint32_t)5000);
+                insertBopEventToQueue(STARTTIMEOUT, ERROR_TIMER, 5000);
                 bopstate = ERROR_STATE;
             }
         break;
@@ -58,9 +60,10 @@ void WABIStateMachine( bopeventtype_t newevent, uint16_t param1, uint32_t param2
         //ACTION_STATE
         case ACTION_STATE:
             //if BUTTON PRESS
-            printfUSART3("State:Action");
+            
             if (newevent == BUTTON_PRESS)
             {
+                printfUSART3("State:Welcoming \n");
                 clearGPIOB13();
                 setGPIOB15();
                 bopstate = WELCOMING;
@@ -68,25 +71,28 @@ void WABIStateMachine( bopeventtype_t newevent, uint16_t param1, uint32_t param2
             //else if TIMEOUT
             else if ((newevent == TIMEOUT) && (param1 == ACTION_TIMER))
             {
+                printfUSART3("State:Welcoming \n");
                 clearGPIOB13();
                 setGPIOB15();                
                 bopstate = WELCOMING;
             }
             else
             {
+                printfUSART3("State:Error \n");
                 clearGPIOB15();
                 clearGPIOB13();
                 setGPIOB12();
-                insertBopEventToQueue(STARTTIMEOUT, ERROR_TIMER, (uint32_t)5000);
+                insertBopEventToQueue(STARTTIMEOUT, ERROR_TIMER, 5000);
                 bopstate = ERROR_STATE;
             }
         break;
 
         //ERROR_STATE
         case ERROR_STATE:
-            printfUSART3("State:Error");
+            
             if ((newevent == TIMEOUT) && (param1 == ERROR_TIMER))
             {
+                printfUSART3("State:Welcoming \n");
                 setGPIOB13();
                 bopstate = WELCOMING;
             }

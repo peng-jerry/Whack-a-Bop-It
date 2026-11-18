@@ -10,11 +10,12 @@
   ******************************************************************************
   */
 #include <stdint.h>
-#include "stm32f446xx_gpio_mort.h"
+
 #include "system/stm32f446xx_system_mort.h"
+#include "stm32f446xx_gpio_mort.h"
 #include "stm32f446xx_usart3_mort.h" //always include usart where you want to do communications
-#include "nucleo_led.h"
 #include "stm32f446xx_timer_mort.h"
+#include "nucleo_led.h"
 #include "os/events.h"
 #include "os/eventchecker.h"
 #include "os/statemachine.h"
@@ -37,8 +38,12 @@ int main (void)
 {
     initUSART3();
     initGpioC6C7AsInput();
+    initGpioB12B13B15AsOutput();
     initTimer3AsTimeBase1ms();
-
+    setGPIOB15();
+    clearGPIOB12();
+    printfUSART3("State:Welcoming \n");
+    
     while(1)
     {
     	timeoutEventCheck();

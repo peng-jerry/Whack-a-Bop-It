@@ -18,7 +18,6 @@
 
 
 /* Module variables----------------------------------------------------------*/
-static boptimerlist_o boptimerlist;
 
 /* function definitions-------------------------------------------------------*/
 
@@ -27,7 +26,6 @@ void timeoutEventCheck( void )
 {
     uint16_t i;
     uint32_t currenttime;
-
     currenttime = getTime_ms();
 
     for (i = 0; i < boptimerlist.sizeoflist; i++)
@@ -48,8 +46,6 @@ void ButtonPressEventCheck( void )
 {
     static uint8_t lastButtonState = 1;     // idles high
     uint8_t currentButtonState;
-    
-    printfUSART3("Button Press");
 
     if (checkGPIOC6() != 0)
     {
@@ -57,7 +53,6 @@ void ButtonPressEventCheck( void )
     }
     else
     {
-        printfUSART3("Button Not Press");
         currentButtonState = 0;
     }
 

@@ -36,12 +36,15 @@ void serviceBopEventQueue( void )
             case NO_EVENT:
             break;
             case STARTTIMEOUT:
-                insertBopTimerToList(currentevent.type, currentevent.name, getTime_ms());
+                printfUSART3("starttimer \n");
+                insertBopTimerToList(currentevent.name, currentevent.value, getTime_ms());
             break;
             case TIMEOUT:
+                printfUSART3("timeout \n");
                 WABIStateMachine(TIMEOUT, currentevent.name, currentevent.value);
             break;
             case BUTTON_PRESS:
+                printfUSART3("Button Pressed \n");
                 WABIStateMachine(BUTTON_PRESS, currentevent.name, currentevent.value);
             break;
         }

@@ -9,6 +9,8 @@
 #define ACTION_TIMER 1
 #define ERROR_TIMER 2
 
+
+
 /* Timer object --------------------------------------------------------------*/
 typedef struct boptimer_o
 {
@@ -24,10 +26,13 @@ typedef struct boptimerlist_o
     uint8_t     sizeoflist;
 } boptimerlist_o;
 
+extern boptimerlist_o boptimerlist;
+
 /* Function declarations -----------------------------------------------------*/
 void initBopTimerList( void );
 void insertBopTimerToList( uint16_t timername, uint32_t timeouttime, uint32_t timestarttime );
 void deleteBopTimerFromList( uint16_t index );
+
 
 #endif /*__TIMERQUEUE_H_ */
 

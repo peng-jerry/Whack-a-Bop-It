@@ -19,7 +19,6 @@
 
 
 
-
 //Port B addresses: //Fill the table of Port B addresses
 //#define PORTB_BASE_ADDRESS ((uint32_t)0x40020400)
 #define PORTB_BASE_ADDRESS    GPIOB_BASE_MORT

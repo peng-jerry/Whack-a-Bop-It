@@ -4,7 +4,7 @@
   * @author
   * @version
   * @date
-  * @brief   Event checkers: timer timeouts and the start button
+  * @brief   timer functions
   ******************************************************************************
   */
 
@@ -16,7 +16,7 @@
 #include "timerqueue.h"
 
 /* Module variables----------------------------------------------------------*/
-static boptimerlist_o boptimerlist;
+boptimerlist_o boptimerlist;
 
 //Empties the timer list
 void initBopTimerList( void )
