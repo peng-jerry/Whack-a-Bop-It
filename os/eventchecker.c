@@ -11,11 +11,11 @@
 /* Includes----------------------------------------------------------*/
 #include "eventchecker.h"
 #include "events.h"
-#include "stm32f446xx_timer_mort.h"     // getTime_100us()
+#include "timerqueue.h"
+#include "stm32f446xx_timer_mort.h"     // getTime_ms()
 #include "stm32f446xx_gpio_mort.h"      // checkGPIOC7()
 #include "stm32f446xx_usart3_mort.h"
-#include "os/timerqueue.h"
-#include "timerqueue.h"
+
 
 /* Module variables----------------------------------------------------------*/
 static boptimerlist_o boptimerlist;
